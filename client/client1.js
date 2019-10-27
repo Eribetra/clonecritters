@@ -73,7 +73,7 @@ art.crosshair = new createjs.Shape, art.crosshair.graphics.setStrokeStyle(1).beg
 var characterData = {
         hamster: {
             name: "hamster",
-            images: ["/media/critters/hamster2.png"],
+            images: ["./media/critters/hamster2.png"],
             frames: [
                 [1, 1, 62, 96, 0, 31, 96],
                 [65, 1, 62, 96, 0, 31, 96],
@@ -102,7 +102,7 @@ var characterData = {
             }
         },
         snail: {
-            images: ["/media/critters/snail.png"],
+            images: ["./media/critters/snail.png"],
             framerate: 10,
             frames: [
                 [1, 1, 83, 103, 0, 38, 98],
@@ -153,7 +153,7 @@ var characterData = {
     itemData = {
         viking: {
             name: "viking",
-            images: ["/media/items/items.png"],
+            images: ["./media/items/items.png"],
             frames: [
                 [1, 1, 67, 51, 0, 33, 32],
                 [1, 54, 64, 53, 0, 32, 28],
