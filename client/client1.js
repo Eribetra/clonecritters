@@ -52,23 +52,6 @@ function Critter(t) {
         y: -6
     }).wait(1)), this.stop()
 }
-art.crosshair = new createjs.Shape, art.crosshair.graphics.setStrokeStyle(1).beginStroke("black").moveTo(-10, 0).lineTo(10, 0).moveTo(0, -10).lineTo(0, 10), art.shadow = new createjs.Shape, art.shadow.graphics.f("rgba(0,0,0,0.2)").s().de(0, 0, 28, 18), art.shadow.regX = 14, art.shadow.regY = 9, art.ring = new createjs.Shape, art.ring.graphics.f().s("#3399FF").ss(2).de(0, 0, 32, 22), art.ring.regX = 16, art.ring.regY = 11, Critter.prototype = Object.create(createjs.MovieClip.prototype), Critter.prototype.updateDirection = function(t) {
-    void 0 === t ? t = this.currentDirection : this.currentDirection = t;
-    var e = this.directionFrames[t];
-    if (null != e) {
-        if (this.slot.body.sprite.gotoAndStop("body" + e), this.slot.head.sprite) {
-            var o = this.slot.head.itemId;
-            this.slot.head.sprite.gotoAndStop(o + e)
-        }
-        1 < t && t < 7 ? (this.slot.face.sprite.gotoAndStop("face" + e), this.slot.face.visible = !0) : this.slot.face.visible = !1
-    }
-}, Critter.prototype.addItem = function(t, e, o) {
-    this.slot[t] && (this.removeItem(t), this.slot[t].itemId = e, this.slot[t].sprite = o, this.slot[t].addChild(o), this.updateDirection())
-}, Critter.prototype.removeItem = function(t) {
-    this.slot[t] && (this.slot[t].removeAllChildren(), delete this.slot[t].itemId, delete this.slot[t].sprite)
-}, Critter.prototype.updateState = function(t) {
-    "move" == t ? this.gotoAndPlay(0) : this.gotoAndStop(0)
-};
 
 var characterData = {
         hamster: {
