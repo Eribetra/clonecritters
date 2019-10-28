@@ -21,6 +21,55 @@ function findDirection(t) {
     return 7 < o ? 0 : o
 }
 
+function Critter(t) {
+    createjs.MovieClip.call(this), this.scaleX = 1, this.scaleY = 1, this.framerate = 30, this.loop = -1, this.currentDirection, this.directionFrames = [0, 1, 3, 3, 4, 5, 5, 7];
+    var e = new createjs.Container,
+        o = new createjs.Container;
+    this.slot = {
+        head: new createjs.Container,
+        face: new createjs.Container,
+        eyes: new createjs.Container,
+        body: new createjs.Container,
+        feet: new createjs.Container
+    };
+    var i = new createjs.SpriteSheet(t),
+        r = new createjs.Sprite(i, "body4"),
+        a = new createjs.Sprite(i, "face4"),
+        s = new createjs.Sprite(i, "feet");
+    this.addItem("body", "body", r), this.addItem("face", "face", a), this.addItem("feet", "feet", s), e.addChild(this.slot.body, this.slot.face, this.slot.head), o.addChild(this.slot.feet), this.slot.face.y = -60, this.slot.head.y = -86, this.addChild(o, e), this.timeline.addTween(createjs.Tween.get(e).wait(1).to({
+        y: 4
+    }).wait(1).to({
+        y: -12
+    }).wait(1).to({
+        y: -16
+    }).wait(1).to({
+        y: -8
+    }).wait(1)), this.timeline.addTween(createjs.Tween.get(o).wait(2).to({
+        y: -8
+    }).wait(1).to({
+        y: -16
+    }).wait(1).to({
+        y: -6
+    }).wait(1)), this.stop()
+}
+art.crosshair = new createjs.Shape, art.crosshair.graphics.setStrokeStyle(1).beginStroke("black").moveTo(-10, 0).lineTo(10, 0).moveTo(0, -10).lineTo(0, 10), art.shadow = new createjs.Shape, art.shadow.graphics.f("rgba(0,0,0,0.2)").s().de(0, 0, 28, 18), art.shadow.regX = 14, art.shadow.regY = 9, art.ring = new createjs.Shape, art.ring.graphics.f().s("#3399FF").ss(2).de(0, 0, 32, 22), art.ring.regX = 16, art.ring.regY = 11, Critter.prototype = Object.create(createjs.MovieClip.prototype), Critter.prototype.updateDirection = function(t) {
+    void 0 === t ? t = this.currentDirection : this.currentDirection = t;
+    var e = this.directionFrames[t];
+    if (null != e) {
+        if (this.slot.body.sprite.gotoAndStop("body" + e), this.slot.head.sprite) {
+            var o = this.slot.head.itemId;
+            this.slot.head.sprite.gotoAndStop(o + e)
+        }
+        1 < t && t < 7 ? (this.slot.face.sprite.gotoAndStop("face" + e), this.slot.face.visible = !0) : this.slot.face.visible = !1
+    }
+}, Critter.prototype.addItem = function(t, e, o) {
+    this.slot[t] && (this.removeItem(t), this.slot[t].itemId = e, this.slot[t].sprite = o, this.slot[t].addChild(o), this.updateDirection())
+}, Critter.prototype.removeItem = function(t) {
+    this.slot[t] && (this.slot[t].removeAllChildren(), delete this.slot[t].itemId, delete this.slot[t].sprite)
+}, Critter.prototype.updateState = function(t) {
+    "move" == t ? this.gotoAndPlay(0) : this.gotoAndStop(0)
+};
+
 var characterData = {
         hamster: {
             name: "hamster",
